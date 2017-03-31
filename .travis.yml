@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+ - 2.3.1
+ - jruby
+ - rbx-2
+
+notifications:
+  email: false
+
+deploy:
+  provider: heroku
+  app: gymtrackerr
+  api_key:
+    secure: 6400b7d0-b7cc-41b9-8419-2db96af55d3a
+  run:
+    - "rake db:migrate"
+    - restart
+    - "rake cleanup"
