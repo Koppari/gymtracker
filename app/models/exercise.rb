@@ -1,3 +1,4 @@
 class Exercise < ActiveRecord::Base
-  belongs_to :workout
+  has_many :workouts
+  has_many :exercises, :through => :workout_exercises
 end

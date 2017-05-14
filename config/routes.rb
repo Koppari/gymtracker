@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'weekdays/index'
+
+  get 'weekdays/show'
+
   devise_for :users
   resources :users
   resources :programs

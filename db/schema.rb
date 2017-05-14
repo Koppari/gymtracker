@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324154547) do
+ActiveRecord::Schema.define(version: 20170514033753) do
 
   create_table "exercises", force: :cascade do |t|
     t.string   "name"
+    t.integer  "workout_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "programs", force: :cascade do |t|
     t.string   "name"
-    t.integer  "workout_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,10 +45,23 @@ ActiveRecord::Schema.define(version: 20170324154547) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
+  create_table "weekdays", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "workout_exercises", force: :cascade do |t|
+    t.integer "workout_id"
+    t.integer "exercise_id"
+  end
+
   create_table "workouts", force: :cascade do |t|
-    t.integer  "exercise_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.integer  "program_id"
+    t.integer  "weekday_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

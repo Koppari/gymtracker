@@ -1,27 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Workouts</h1>
+<h1>Your workouts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Exercise</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @workouts.each do |workout| %>
+<% if current_user %>
+    <table class="table table-hover">
+      <thead>
       <tr>
-        <td><%= workout.exercise_id %></td>
-        <td><%= link_to 'Show', workout %></td>
-        <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
-        <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th> <%= 'Name' %> </th>
+        <th> <%= 'Weekday' %> </th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
+
+      <tbody>
+      <% @workouts.each do |workout| %>
+          <tr>
+            <td><%= link_to workout.name, workout %></td>
+            <td><%= workout.weekday %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% else %>
+    <p>Only logged in users can manage workouts! Log in to access this feature.</p>
+<% end %>
 
 <br>
 
-<%= link_to 'New Workout', new_workout_path %>
+<%= link_to('New workout', new_workout_path) if current_user %>

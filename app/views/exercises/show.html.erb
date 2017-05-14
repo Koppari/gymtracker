@@ -1,9 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h2>
   <%= @exercise.name %>
-</p>
+</h2>
 
-<%= link_to 'Edit', edit_exercise_path(@exercise) %> |
-<%= link_to 'Back', exercises_path %>
+<br>
+
+<% if current_user %>
+    <h4>Add this exercise to your program</h4>
+    <% else %>
+    <h4>To add this exercise to your workout and program, log in!</h4>
+<% end %>
+
+
+
