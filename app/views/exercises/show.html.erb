@@ -7,8 +7,30 @@
 <br>
 
 <% if current_user %>
-    <h4>Add this exercise to your program</h4>
+    <% if @exercise.workouts.empty? %>
+        Select which workout you would like to add the exercise <%= @exercise.name %> to:
+        <br><br>
+        <%= form_for(@workout_exercise) do |f| %>
+            <%= f.select :workout_id, options_from_collection_for_select(@workouts, :id, :to_s, selected: @workout_exercise.workout_id) %>
+            <%= f.hidden_field :exercise_id, value: @exercise.id %>
+            <%= f.submit %>
+        <% end %>
     <% else %>
+        <%= @exercise.name %> is in the following workouts:
+        <ul>
+          <% @exercise.workouts.each do |exercise| %>
+              <li><%= link_to exercise.name, exercise %></li>
+          <% end %>
+        </ul>
+        <br><br>
+        Select which workout you would like to add the exercise <%= @exercise.name %> to:
+        <%= form_for(@workout_exercise) do |f| %>
+            <%= f.select :workout_id, options_from_collection_for_select(@workouts, :id, :to_s, selected: @workout_exercise.workout_id) %>
+            <%= f.hidden_field :exercise_id, value: @exercise.id %>
+            <%= f.submit %>
+        <% end %>
+    <% end %>
+<% else %>
     <h4>To add this exercise to your workout and program, log in!</h4>
 <% end %>
 

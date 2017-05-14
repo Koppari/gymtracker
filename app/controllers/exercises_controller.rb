@@ -10,6 +10,9 @@ class ExercisesController < ApplicationController
   # GET /exercises/1
   # GET /exercises/1.json
   def show
+    @workouts = Workout.all
+    @workout_exercise = WorkoutExercise.new
+    @workout_exercise.exercise_id = @exercise
   end
 
   # GET /exercises/new

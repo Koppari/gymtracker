@@ -1,0 +1,23 @@
+<h2>Add an exercise to a workout</h2>
+
+<%= form_for(@workout_exercise) do |f| %>
+    <% if @workout_exercise.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@workout_exercise.errors.count, "error") %> prohibited rating from being saved:</h2>
+
+          <ul>
+            <% @workout_exercise.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    Select which workout you would like to add the exercise <%= @exercise.name %> to:
+    <br><br>
+
+    <%= f.select :workout_id, options_from_collection_for_select(@workouts, :id, :to_s, selected: @workout_exercise.workout_id) %>
+    <br><br>
+    <%= f.submit %>
+
+<% end %>

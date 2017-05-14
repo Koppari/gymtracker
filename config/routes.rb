@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :workout_exercises
   get 'weekdays/index'
 
   get 'weekdays/show'

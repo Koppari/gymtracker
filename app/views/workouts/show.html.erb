@@ -1,4 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_workout_path(@workout) %> |
-<%= link_to 'Back', workouts_path %>
+<h2>
+  Workout <%= @workout.name %>
+</h2>
+
+<p>This workout includes the following exercises:</p>
+
+<ul>
+  <% @workout.exercises.each do |exercise| %>
+    <li><%= link_to exercise.name, exercise %></li>
+  <% end %>
+</ul>
+
+<br>
+
+
